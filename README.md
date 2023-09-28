@@ -24,9 +24,10 @@ Simple repo to check and validate all possible concerns regarding npm workspaces
    To build shared package before installation, we have to add `preinstall` script to package json of the project, for example:
 
    ```json
+   // from is-odd package.json
     "scripts": {
       "preinstall": "npm run build --prefix ../shared",
     },
    ```
 
-   and shared package HAVE TO have the build script predefined. To verify it you can ran `npm i -w ./packages/is-even` again and find `dist` folder for `shared` package and `is-odd` package.
+   and shared package HAVE TO have the build script predefined. To verify it you can ran `npm i -w ./packages/is-even` again and find `dist` folder for `shared` package and `is-odd` package. This logic can work in cascade style: `is-even` package triggers build of `is-odd` package and `is-odd` package triggers build of `shared` package.
